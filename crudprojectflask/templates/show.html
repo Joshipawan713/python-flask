@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Data</title>
+</head>
+<body>
+    <h1>Data from MySQL</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th> <!-- Update according to your table columns -->
+                <th>Email</th>
+                <th>Password</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if num_rows > 0 %}
+            {% for row in data %}
+            <tr>
+                <td>{{ row.id }}</td> <!-- Adjust according to your column names -->
+                <td>{{ row.name }}</td>
+                <td>{{ row.email }}</td>
+                <td>{{ row.password }}</td>
+                <td>Edit</td>
+                <td>
+                    <form action="{{ url_for('delete_user', delid=row.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+
+            {% else %}
+
+            <tr>
+                <td colspan="6" align="center">No Data Found</td>
+            </tr>
+
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>
