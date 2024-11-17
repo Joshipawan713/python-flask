@@ -19,10 +19,10 @@
             </tr>
         </thead>
         <tbody>
-            {% if num_rows > 0 %}
+            {% if data %}
             {% for row in data %}
             <tr>
-                <td>{{ row.id }}</td> <!-- Adjust according to your column names -->
+                <td>{{ row.id }}</td>
                 <td>{{ row.name }}</td>
                 <td>{{ row.email }}</td>
                 <td>{{ row.password }}</td>
@@ -34,15 +34,12 @@
                 </td>
             </tr>
             {% endfor %}
-
             {% else %}
-
             <tr>
                 <td colspan="6" align="center">No Data Found</td>
             </tr>
-
             {% endif %}
-        </tbody>
+        </tbody>        
     </table>
 </body>
 </html>

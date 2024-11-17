@@ -12,22 +12,41 @@ from mysql.connector import Error
 #     connection.close()
 #     return results
 
+# def get_all_users():
+#     connection = create_connection()
+#     if connection is None:
+#         print('Failed to connect to database')
+#         return []
+#     try:
+#         cursor = connection.cursor()
+#         cursor.execute('SELECT * FROM user')
+#         results = cursor.fetchall()
+#     except mysql.connector.Error as err:
+#         print(f"Error: {err}")
+#         results = []
+#     finally:
+#         cursor.close()
+#         connection.close()
+#     return results
+
 def get_all_users():
-    connection = create_connection()
-    if connection is None:
-        print('Failed to connect to database')
-        return []
     try:
-        cursor = connection.cursor()
-        cursor.execute('SELECT * FROM user')
-        results = cursor.fetchall()
-    except mysql.connector.Error as err:
-        print(f"Error: {err}")
-        results = []
-    finally:
+        # Establish database connection
+        connection = mysql.connector.connect(
+            host='localhost',
+            user='your_user',
+            password='your_password',
+            database='your_database'
+        )
+        cursor = connection.cursor(dictionary=True)  # Use dictionary=True for row as dict
+        cursor.execute("SELECT * FROM your_table")  # Replace with your table name
+        users = cursor.fetchall()  # Fetch all rows as list of dictionaries
         cursor.close()
         connection.close()
-    return results
+        return users  # Return list of dictionaries
+    except Exception as e:
+        print(f"Error: {e}")
+        return []
         
 
 def insert_user(name,email,password):
