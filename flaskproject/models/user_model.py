@@ -32,14 +32,9 @@ from mysql.connector import Error
 def get_all_users():
     try:
         # Establish database connection
-        connection = mysql.connector.connect(
-            host='localhost',
-            user='your_user',
-            password='your_password',
-            database='your_database'
-        )
+        connection = create_connection()
         cursor = connection.cursor(dictionary=True)  # Use dictionary=True for row as dict
-        cursor.execute("SELECT * FROM your_table")  # Replace with your table name
+        cursor.execute("SELECT * FROM user")  # Replace with your table name
         users = cursor.fetchall()  # Fetch all rows as list of dictionaries
         cursor.close()
         connection.close()
