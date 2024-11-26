@@ -9,7 +9,7 @@ def create_connection():
             host='localhost',
             user='root',
             password='',
-            database='onlinebooksreading'
+            database='book_ciil'
         )
         if connection.is_connected():
             print("Connection successful")
