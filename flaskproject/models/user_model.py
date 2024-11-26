@@ -30,7 +30,7 @@ from mysql.connector import Error
 #     return results
 
 def get_all_users():
-    try:
+    # try:
         # Establish database connection
         connection = create_connection()
         cursor = connection.cursor(dictionary=True)  # Use dictionary=True for row as dict
@@ -39,9 +39,9 @@ def get_all_users():
         cursor.close()
         connection.close()
         return users  # Return list of dictionaries
-    except Exception as e:
-        print(f"Error: {e}")
-        return []
+    # except Exception as e:
+    #     print(f"Error: {e}")
+    #     return []
         
 
 def insert_user(name,email,password):
